@@ -99,7 +99,7 @@ void ForcastWidget::updateWeather()
                 QJsonArray list = JD.object().value("list").toArray();
                 int r = 0;
                 for (int i=0; i<list.size(); i++) {
-                    QDateTime date = QDateTime::fromSecsSinceEpoch(list[i].toObject().value("dt").toInt(), QTimeZone::utc());
+                    QDateTime date = QDateTime::fromMSecsSinceEpoch(list[i].toObject().value("dt").toInt()*1000LL, QTimeZone::utc());
                     QString sdate = date.toString("MM-dd ddd");
                     QString dt_txt = list[i].toObject().value("dt_txt").toString();
                     double temp = list[i].toObject().value("main").toObject().value("temp").toDouble() - 273.15;
